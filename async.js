@@ -1,5 +1,5 @@
 var asyncSymbol = Symbol('asyncSymbol');
-var deferConfig = require('./defer').deferConfig;
+import { deferConfig } from './defer.js';
 
 /**
  * @param promiseOrFunc   the promise will determine a property's value once resolved
@@ -34,7 +34,7 @@ function asyncConfig(promiseOrFunc) {
 
 /**
  * Do not use `config.get` before executing this method, it will freeze the config object
- * @param config    the main config object, returned from require('config')
+ * @param config    the main config object, returned from import 'config'
  * @returns {Promise<config>}   once all promises are resolved, return the original config object
  */
 function resolveAsyncConfigs(config) {

@@ -3,7 +3,7 @@
 // webpack can't solve dynamic module
 // @see https://github.com/node-config/node-config/issues/755
 // @see https://webpack.js.org/guides/dependency-management/#require-with-expression
-const JSON5Module = require('json5');
+import JSON5Module from 'json5';
 
 // webpack resolves json5 with module field out of the box which lead to this usage
 // @see https://github.com/node-config/node-config/issues/755
@@ -34,7 +34,8 @@ var COFFEE_2_DEP = 'coffeescript',
     XML_DEP = 'x2js',
     TS_DEP = 'ts-node';
 
-var Parser = module.exports;
+export var Parser = {};
+export default Parser;
 
 Parser.parse = function(filename, content) {
   var parserName = filename.substr(filename.lastIndexOf('.') +1);  // file extension
@@ -57,12 +58,14 @@ Parser.xmlParser = function(filename, content) {
   return configObject;
 };
 
-Parser.jsParser = function(filename, content) {
-  var configObject = require(filename);
+Parser.jsParser = async function(filename, content) {
 
+  var configObject = await import(filename).then(d => d.config);
+  
   if (configObject.__esModule && isObject(configObject.default)) {
     return configObject.default
   }
+
   return configObject;
 };
 
