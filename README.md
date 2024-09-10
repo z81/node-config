@@ -1,4 +1,5 @@
 Configure your Node.js Applications
+(Это [форк](https://github.com/node-config/node-config) версия с поддержкой es modules)
 ===================================
 
 [![NPM](https://nodei.co/npm/config.svg?downloads=true&downloadRank=true)](https://nodei.co/npm/config/)&nbsp;&nbsp;
